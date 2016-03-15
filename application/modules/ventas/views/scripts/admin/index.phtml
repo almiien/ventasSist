@@ -1,0 +1,83 @@
+
+  <!-- Contendos de las tabs -->
+  <div class="tab-content">
+  	<!-- tab de articulos-->
+    <div role="tabpanel" class="tab-pane active" id="articulos">
+		<a class="btn btn-success margin-arriba" href="<?php echo $this->url(array('module'=>'ventas','controller'=>'admin','action'=>'create-articulo')) ?>">Agregar</a>
+		<table class="table table-hover table-responsive">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>					
+					<th>Editar/Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+		    	<?php foreach ($this->articulos as $articulo): ?>
+		    		<?php  $moneda = new Zend_Currency(array('value' => $articulo->precio,'symbol' => '$ ','format'   => 'en',)); ?>
+					<tr>
+						<td><?php echo $articulo->nombre ?></td>
+						<td><?php echo $moneda ?></td>
+						<td><a href="<?php echo $this->url(array('module'=>'ventas','controller'=>'admin','action'=>'edit-articulo','id'=>$articulo->idArticulo)) ?>"><img class="icon icons8-Edit-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACOklEQVRoQ93aMVLbQBQG4P/hBqqYG7hJRnS+AaZBpuMGISeAG/CcC8ScADgBSYXtJuIEcSprkoJwApQuYbAfI4NAko1tGe3qyZ5x4dn1aD+93VfoF2FFPrQiDqiHOHzZIKwdAth/uul9IbT9Y/c8XgTVEId7BwQ5nbprRE4GreZRNKYWkkCInAhJ+x/Wgw38PxAQE/BOMNrxec8LMSohcYQALZ9djldliztHAH0R4Mpnt6ESMmU7Bfegnd+8248wNf5e3cDdLYBgwO6mOsiMM5HAOHxZI6xdA3Iz4GZNFWTmwX4sxTNm67jTBtEhRL4NWs1xN1NxRhZARLsqCFsvCViAv8Co7vPeHxWQDIhEFxbQJ593z1S037wQhVYkT0RhkLwRhUBMIKxDTCGsQkwirEFMI6xAbCCMQ2whjEJsIoxBbCOMQIpA5A4pCpErpEhEbpCiEblANCDeDNGCeBNEE2JpiDbEUhCNiMwQrYhMEM2IhSHaEQtByoCYCykLYiakTIhXIWVDTIWUETEBiQUoiQfG836kHyjPm29iPBErfODufgW4yHIhDYiJisQDFCFqhIHjLJQWxCSEuz8A1MO0dIhKUIF4r2E0IRKQKJcLkyCf3Wo4+J579WkYbYgU5Cmcj+VyzufeNo0kDOWjtw6gEZGCdM8I+Cjj7URBfPHROdGKSEE61wQaR70vC8dPEvGGRN4vdr9m6Wa25z63X4e7fYJUBeRh/B16UWJqe1HLXE9FPL3MwtP/WRnIAzs5kEKglPBZAAAAAElFTkSuQmCC" width="32" height="32"></a>
+						<a class ="margin-isq"href="<?php echo $this->url(array('module'=>'ventas','controller'=>'admin','action'=>'delete-articulo','id'=>$articulo->idArticulo)) ?>"><img class="icon icons8-Cancel" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAETElEQVRoQ92awU7bQBBAZx33UHEovVQyl4YvaLhVJBXJrSKpBF8A/AF8QcMXNH8AfAGRmqDeSNQY9Ub6BYQLkXopHFAPdTzVbOzUMXa8s3ZoiiUuyDOZtzOenZldAXN4hh/ebYDr5kGIfKR6xAEYxsD6/LWb9c+LLBQO37/Ng2nuAEDZ++Oo7QBABxznxPrybcARjHo3FdCwWtxBgH0hRCGtISSPiH0B0LDa9omuPi0gAgGAemxI6Vrjy1FIAtR1wFhAXmgdaYSVLiKF4h4nFJWBhpvru2gYnwTAsq51OnIIcCtc98A6uzhWkVcCGlaLRyDErorCub2DeGy17b0k/YlACwHz99tKhJoJtFAwilCxQAsJowAVCUQJAAyDstniPq67F5UoHgBRakbTvHzsbMZdOZn9HGctnNIfAtVK54+4z3A5wu93rFavEvznFNB/EWphpFDoTQNVi1fscgbhDgRsgeMM0Mw1BYg3nGVHwO/CGW2BaeYBoQkCXnDkAXFgte1VX2YCpOUdhLscuuVXZxd9Uvhzq7D8y1nqqEIRzHPzvvyy2b8l+R+b64WRMDpsqICXJkA31eIlq2oOwfgrpAoVhvHldaCoSl9p22ukQwJ5RecVy9UAFavVo17mwZMEFQfjKxrWStRXUXJSfxxnlTLeGKhWqgPAR3VpAPAUxMnEQSXB6C4wIh6stO2GD0QrvcEBIjc/f3Zf8eNfxVMqMHIhfi+ds8J//ONdq9Ur+0DIgfHf5UCRTDABxC6AHoxUZ7V6QmjFa8AaVSgSSfRmChjPpIrQSteh5VWBmhUBKcJsSq0hRtvkIX5CiLBOFyorGM+kw8yASCEXKmMYMiFbIA7UHGDmBBQqZ7j7lE62Dchk6yGVfSZocFJFoQGXHRAXxjc2Y6jDbNK2YpjNO/z8tM0vBIMbqwIMeUFpY2W0HjGLU0lX+ijCUG0mSx9m7cf9hmTpQ0LDWolfnDJg/EJTZZ9K8U1NFaf8akGlfYiozVSgdPqz6fZhfGCVbYM3o9BMgtIqmIMNHoXdTa3YV50FyIoA4NZ03Yo/T5hKwwpVcxwUteCOYZxz5oK0Zay0bHnolmpIEobiljNhKB0YuZBRQxKZHKrFAQjxmpNd5AQTYFuOsXK5U26nKY8hR6NtGmMhwCnHM9JOxGurbU8Op5/2oFE3hXM8mvG7MlUHdUYO6yFn9tnDvowtTVRHE9uRU0gc1ksvPaXjFH9lhtXiMQhBx/eL9yCeWG078sw36Uhy8aBmwEztQ3FuWChPJcAoAXn707/3lAKMMtAkUQij8ejZj7IZuvuZXryYJIpxEUs3Olhz8BRZpQuOszuXqzFBo2RaF4IuL7HKJGUwxGtArKt6ZebGqvyj3n6FhtjnVOmz9MvjSRcbOiC+3sSrMSqAXkNG+wKVIdxw7CJiU4xGTU5oxdmVCVBYuWzQ6IqmYURf0XTd8RXNmBNAlUWMe+cP/LfmycISHU0AAAAASUVORK5CYII=" width="32" height="32"></a></td>
+					</tr>
+		    	<?php endforeach; ?>				
+			</tbody>
+		</table>  
+    </div><!-- /tab articulos-->
+    <!-- tab pedidos-->
+    <div role="tabpanel" class="tab-pane" id="pedidos">    	
+		<table class="table table-hover table-responsive">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Cantidad</th>					
+					<th>Articulo</th>					
+					<th>Costo Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+		    	<?php foreach ($this->pedidos as $pedido): ?>
+		    		<?php 
+		    			$artTable = new Application_Model_DbTable_Articulo(); 
+		    			$art = $artTable->fetchRow($artTable->select()->where('idArticulo = ?',$pedido->articulo_idArticulo ));
+		    			$total = $pedido->cantidad * $art->precio;
+		    			$moneda = new Zend_Currency(array('value' => $total,'symbol' => '$ ','format'   => 'en',));
+		    		?>
+		    		
+					<tr>
+						<td><?php echo $pedido->fecha ?></td>
+						<td><?php echo $pedido->cantidad ?></td>
+						<td><?php echo $art->nombre ?></td>						
+						<td><?php echo $moneda ?></td>
+					</tr>
+		    	<?php endforeach; ?>				
+			</tbody>
+		</table>  
+    </div><!-- /tab pedidos-->
+    <!-- tab usuarios-->
+    <div role="tabpanel" class="tab-pane" id="usuarios">    	
+		<table class="table table-hover table-responsive">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Email</th>					
+					<th>Rol</th>														
+					<th>Editar</th>
+				</tr>
+			</thead>
+			<tbody>
+		    	<?php foreach ($this->usuarios as $usuario): ?>
+					<tr>
+						<td><?php echo $usuario->nombre ?></td>
+						<td><?php echo $usuario->email ?></td>
+						<td><?php echo ($usuario->rol == 0)?"Administrador":"Cliente"; ?></td>
+						<td><a href="<?php echo $this->url(array('module'=>'ventas','controller'=>'admin','action'=>'edit-usuario' ,'id'=>$usuario->email)) ?>"><img class="icon icons8-Edit-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAACOklEQVRoQ93aMVLbQBQG4P/hBqqYG7hJRnS+AaZBpuMGISeAG/CcC8ScADgBSYXtJuIEcSprkoJwApQuYbAfI4NAko1tGe3qyZ5x4dn1aD+93VfoF2FFPrQiDqiHOHzZIKwdAth/uul9IbT9Y/c8XgTVEId7BwQ5nbprRE4GreZRNKYWkkCInAhJ+x/Wgw38PxAQE/BOMNrxec8LMSohcYQALZ9djldliztHAH0R4Mpnt6ESMmU7Bfegnd+8248wNf5e3cDdLYBgwO6mOsiMM5HAOHxZI6xdA3Iz4GZNFWTmwX4sxTNm67jTBtEhRL4NWs1xN1NxRhZARLsqCFsvCViAv8Co7vPeHxWQDIhEFxbQJ593z1S037wQhVYkT0RhkLwRhUBMIKxDTCGsQkwirEFMI6xAbCCMQ2whjEJsIoxBbCOMQIpA5A4pCpErpEhEbpCiEblANCDeDNGCeBNEE2JpiDbEUhCNiMwQrYhMEM2IhSHaEQtByoCYCykLYiakTIhXIWVDTIWUETEBiQUoiQfG836kHyjPm29iPBErfODufgW4yHIhDYiJisQDFCFqhIHjLJQWxCSEuz8A1MO0dIhKUIF4r2E0IRKQKJcLkyCf3Wo4+J579WkYbYgU5Cmcj+VyzufeNo0kDOWjtw6gEZGCdM8I+Cjj7URBfPHROdGKSEE61wQaR70vC8dPEvGGRN4vdr9m6Wa25z63X4e7fYJUBeRh/B16UWJqe1HLXE9FPL3MwtP/WRnIAzs5kEKglPBZAAAAAElFTkSuQmCC" width="32" height="32"></a>
+						</td>
+					</tr>
+		    	<?php endforeach; ?>				
+			</tbody>
+		</table>  
+    </div><!-- tab usuarios-->
+  </div>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<!-- cdn bootstrap css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">	
+	<link href="/css/sb-admin.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/estilos.css">
+
+	<title>Mi pagina</title>
+</head>
+<body>
+	<header>		
+		<!-- navegacion -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- logo o marca -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Sistema ventas</a>
+            </div>
+            <!-- nombre de sesion -->
+            <ul class="nav navbar-right top-nav">                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $this->layout()->nombre ?> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="<?php echo $this->url(array('module'=>'default','controller'=>'auth','action'=>'logout')) ?>"><i class="fa fa-fw fa-user"></i> Cerrar sesion</a>
+                        </li>                        
+                    </ul>
+                </li>
+            </ul>
+            <!-- barra lateral izquierda -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">                                        
+                    <li role="presentation" class="active"><a href="#articulos" aria-controls="home" role="tab" data-toggle="tab">Articulos</a></li>
+				    <li role="presentation"><a href="#pedidos" aria-controls="pedidos" role="tab" data-toggle="tab">Pedidos</a></li>
+				    <li role="presentation"><a href="#usuarios" aria-controls="usuarios" role="tab" data-toggle="tab">Usuarios</a></li> 
+                    <li ><a href="<?php echo $this->url(array('module'=>'ventas','controller'=>'index','action'=>'index')) ?>" >Ventas</a></li> 
+                </ul>
+            </div>            
+        </nav>
+	</header>
+	<div class="container-admin">
+		<?php echo $this->layout()->content; ?>			
+	</div>	
+	<!-- cdn de jquery-->
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<!-- cdn de js bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

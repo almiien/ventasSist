@@ -1,0 +1,51 @@
+body{
+	background-color: white;
+}
+
+.icons8-Contacts{
+	width: 100px;
+	height: 100px;
+}
+.margin-arriba{
+	margin-top: 10px;
+}
+.margin-isq{
+	margin-left: 20px;
+}
+.container-admin{
+	margin-left: 225px;
+	padding: 15px;
+}
+.icon{
+	transition: all .2s ease-in-out;
+}
+.icon:hover{
+	transform: scale(1.1);
+}
+.icon-productos{
+	margin-top: 80px;
+}
+@media(max-width:767px){
+	.icon{
+		width: 16px;
+		height: 16px;
+	}
+	.icons8-Contacts{
+		width: 52px;
+		height: 52px;
+	}
+	.container-fluid{
+		margin-left: 0px;
+	}	
+	.icon-productos{
+		margin-top: 0;
+	}
+	.container-admin{
+		margin-left: 0;
+		padding: 5px;
+	}
+}
+
+@media(min-width:768px){}
+@media(min-width:992px){}
+@media(min-width:1200px){}

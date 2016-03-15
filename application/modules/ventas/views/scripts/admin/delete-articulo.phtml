@@ -1,0 +1,15 @@
+<div class="jumbotron">
+  <h1>Esta a punto de eliminar un articulo</h1>	  
+  <p>Si esta usted completamente seguro de eliminar el articulo <?php echo $this->articulo->nombre." con valor de".$this->articulo->precio; ?>, de click en aceptar</p>
+  <form action="/ventas/admin/delete-articulo" method="post">
+  	<input type="hidden" name="id" value="<?php echo $this->articulo->idArticulo ?>">
+  	<div class="well text-center row">
+  		<div class="col-md-5 col-md-offset-1">
+	  		<input class="btn btn-primary btn-block" type="submit" value="Aceptar" >	  			
+  		</div>
+  		<div class="col-md-5">
+	  		<a class="btn btn-danger btn-block" href="/ventas/admin" >Cancelar</a>
+  		</div>
+  	</div>
+  </form>	  
+</div>

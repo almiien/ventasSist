@@ -1,0 +1,95 @@
+<div class="page-header">
+  <h1>Productos  <small>has tu pedido</small></h1>
+</div>
+<!-- tabla de articulos-->
+<div role="tabpanel" class="tab-pane active" id="articulos">		
+	<table class="table table-hover table-responsive" id="tablaArticulos">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Precio</th>					
+				<th>Hacer pedido</th>
+				<th>cantidad</th>
+				<th>Costo</th>
+			</tr>
+		</thead>
+		<tbody >
+	    	<?php foreach ($this->articulos as $articulo): ?>
+	    		<?php 
+	    			$cantidad = 1;
+	    		?>
+	    		<?php  $moneda = new Zend_Currency(array('value' => $articulo->precio,'symbol' => '$ ','format'   => 'en',)); ?>
+				<tr>
+					<td><?php echo $articulo->idArticulo ?></td>
+					<td><?php echo $articulo->nombre ?></td>
+					<td><?php echo $moneda ?></td>
+					<td><a href="#" onClick="addArtPedido(<?php echo $articulo->idArticulo.",".$articulo->precio ?>)"id="add" value="<?php $articulo->idArticulo ?>"><img class="icon icons8-Add-Shopping-Cart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADP0lEQVRoQ+2Yv09TURTHv4ekZdCEupNQJh1M7KSTSV00cUCcIbHdaDtoB9O+CZhadAAGykj9CwQGE1jEOMEiJjoX/oMyduGY+5619/3i3fvebQHTN757zz3nc8/33F+EW/7RLY8fY4DrzuA4AzcrA0uLeYB3kE5nMT0N3L3jxMc4xQTtolRbve6Avf7dEiotnAE0Y3dKpYAH9939GW1U6sWbBOEGWFrogmgqFEA0ED9DyTpShfj4/SXLfd8//WK07jwAi3kQt5FKz7gk5IqWP6FsFW4mQFBUrbV5gD//a2J0UanfGwnAdiMPpq8uX8SzKFln/X9q6Ww1uwAcadkfvUa5tqsCkUhCrUYboDcDP/wNZSsv+1UE8A0UKiNvwFGQoTWx3ciCqeOZfV/9KQKoy8gYgG/28RPleu7qZfSq6VKUkRGA9fUM0r0OCJlB7XERFaudAEBNRkYAthorIFqWgj9HxcoGza+ahIRlzNUoVhG3mkL7g4CZV1GxVpIB2BD6q5E2wFajAKIdKdgL9CazqFbFSuj71DNgA6jJSPaiDeCbfWyiUn8XVp6aAOqrUd+hFoDCxhW/iPuWrabrbKOzqUXtCWg1xa4rbVTRxxa9DDgyYrhuotFOIgMXHRQ3LgMZWGNxQRgscXpno1AYhWND8iJ2ViKPhMRPqqJc21Ca6aBOWx9yoMsf7ia181YMCQkAwaBvqgzIHLpxGZCQABDBByRCOcKIjhx8bBiihExFbo9z5cZlKANGA5YHuwCooHrXsKtPOxRvEZfr+mNoOw030Hf+3wF47qgGJ1dpqDgZOAXwSBr9CMRF+aKt5NlQJ30A/3HXUCjSMBp1pQ/g7MbeLJiFGDqAuLNO9sTrnCwlcxBDB+iH6shJXDbMgowMAEAuP59JpS+XJ4jmBRczt08O95VesZPY9ucwXg1IYnnyYm4DoLdu/fDm8cF+6DWw3zeJrTGAx89fdYkwNfswZ5/vOr9FfePs+GBvNqooktgOBwBA55cNcH58sBf4jiNDuQA0bQ0CzK2Q/Ajl1MHqyeF+4DuOGyC+rTEAMdBfLctFHBm8pw5i2cY7jUYJe8TtiVehEcfrczcGGGcg4Qzcegn9Af4SckBMhDvLAAAAAElFTkSuQmCC" width="32" height="32"></a>
+					<a class ="margin-isq"href="#" onClick="subsArtPedido(<?php echo $articulo->idArticulo.",".$articulo->precio ?>)"><img class="icon icons8-Cancel" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAETElEQVRoQ92awU7bQBBAZx33UHEovVQyl4YvaLhVJBXJrSKpBF8A/AF8QcMXNH8AfAGRmqDeSNQY9Ub6BYQLkXopHFAPdTzVbOzUMXa8s3ZoiiUuyDOZtzOenZldAXN4hh/ebYDr5kGIfKR6xAEYxsD6/LWb9c+LLBQO37/Ng2nuAEDZ++Oo7QBABxznxPrybcARjHo3FdCwWtxBgH0hRCGtISSPiH0B0LDa9omuPi0gAgGAemxI6Vrjy1FIAtR1wFhAXmgdaYSVLiKF4h4nFJWBhpvru2gYnwTAsq51OnIIcCtc98A6uzhWkVcCGlaLRyDErorCub2DeGy17b0k/YlACwHz99tKhJoJtFAwilCxQAsJowAVCUQJAAyDstniPq67F5UoHgBRakbTvHzsbMZdOZn9HGctnNIfAtVK54+4z3A5wu93rFavEvznFNB/EWphpFDoTQNVi1fscgbhDgRsgeMM0Mw1BYg3nGVHwO/CGW2BaeYBoQkCXnDkAXFgte1VX2YCpOUdhLscuuVXZxd9Uvhzq7D8y1nqqEIRzHPzvvyy2b8l+R+b64WRMDpsqICXJkA31eIlq2oOwfgrpAoVhvHldaCoSl9p22ukQwJ5RecVy9UAFavVo17mwZMEFQfjKxrWStRXUXJSfxxnlTLeGKhWqgPAR3VpAPAUxMnEQSXB6C4wIh6stO2GD0QrvcEBIjc/f3Zf8eNfxVMqMHIhfi+ds8J//ONdq9Ur+0DIgfHf5UCRTDABxC6AHoxUZ7V6QmjFa8AaVSgSSfRmChjPpIrQSteh5VWBmhUBKcJsSq0hRtvkIX5CiLBOFyorGM+kw8yASCEXKmMYMiFbIA7UHGDmBBQqZ7j7lE62Dchk6yGVfSZocFJFoQGXHRAXxjc2Y6jDbNK2YpjNO/z8tM0vBIMbqwIMeUFpY2W0HjGLU0lX+ijCUG0mSx9m7cf9hmTpQ0LDWolfnDJg/EJTZZ9K8U1NFaf8akGlfYiozVSgdPqz6fZhfGCVbYM3o9BMgtIqmIMNHoXdTa3YV50FyIoA4NZ03Yo/T5hKwwpVcxwUteCOYZxz5oK0Zay0bHnolmpIEobiljNhKB0YuZBRQxKZHKrFAQjxmpNd5AQTYFuOsXK5U26nKY8hR6NtGmMhwCnHM9JOxGurbU8Op5/2oFE3hXM8mvG7MlUHdUYO6yFn9tnDvowtTVRHE9uRU0gc1ksvPaXjFH9lhtXiMQhBx/eL9yCeWG078sw36Uhy8aBmwEztQ3FuWChPJcAoAXn707/3lAKMMtAkUQij8ejZj7IZuvuZXryYJIpxEUs3Olhz8BRZpQuOszuXqzFBo2RaF4IuL7HKJGUwxGtArKt6ZebGqvyj3n6FhtjnVOmz9MvjSRcbOiC+3sSrMSqAXkNG+wKVIdxw7CJiU4xGTU5oxdmVCVBYuWzQ6IqmYURf0XTd8RXNmBNAlUWMe+cP/LfmycISHU0AAAAASUVORK5CYII=" width="32" height="32"></a></td>
+					<td id="<?php echo 'ctfy_'.$articulo->idArticulo ?>"></td>
+					<td id="<?php echo 'row_'.$articulo->idArticulo ?>" ctfy="" class="ctfy"></td>
+				</tr>
+	    	<?php endforeach; ?>				
+		</tbody>
+	</table>  
+	<button class="btn btn-primary btn-block" onClick="hacerPedido()">Hacer Pedido</button>
+	<div id="msg"></div>
+</div><!-- /tab articulos-->
+<script>	
+	function addArtPedido(art,costo){
+		var valor = parseInt($('#row_'+art).attr('ctfy'));
+		valor = (valor)?valor+1:1;
+		var total = (valor)?costo * valor:"";
+		total = '$ '+total;
+		$('#row_'+art).attr('ctfy',valor);
+		$('#ctfy_'+art).html(valor);
+		$('#row_'+art).html(total);
+	}
+	function subsArtPedido(art,costo){
+		var valor = parseInt($('#row_'+art).attr('ctfy'));
+		valor = (valor)?valor-1:"";
+		var total = (valor)?costo * valor:"";
+		total = (valor)?'$ '+total:"";
+		$('#row_'+art).attr('ctfy',valor);
+		$('#ctfy_'+art).html(valor);
+		$('#row_'+art).html(total);
+	}
+	function hacerPedido(){		
+		var arrayData={};
+		var i = 0;
+		$("#tablaArticulos tbody tr").each(function(index){
+			var data = {};
+			var campo0,campo4;
+            $(this).children("td").each(function (index2) 
+            {            	
+                switch (index2) 
+                {           
+                	case 0:
+                	    campo0 = $(this).text();                    	
+                    	data['id']=campo0;                    		                    	
+                        break;     
+                    case 4: 
+                    	campo4 = $(this).text();
+                    	if (campo4>0) {
+                    		data['cantidad']=campo4;                    		
+                    	};
+                        break;
+                }
+                $(this).css("background-color", "#ECF8E0");
+            })  
+            arrayData[i]=data;
+            i++;
+		})
+        console.log(arrayData) ;
+        $.ajax({
+		  url: "/ventas/index/pedido",
+		  type: "POST",
+		  dataType:'json',
+		  data: arrayData,
+		  success: function(data){		  	  
+			  $("#msg").html("su pedido fue registrado")		  	  	
+		      console.log(data);
+		  }
+		});
+	}
+</script>
